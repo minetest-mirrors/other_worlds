@@ -29,6 +29,18 @@ local redskybox = {
 }
 
 
+-- gravity helper function
+local set_gravity = function(player, grav)
+
+	if pova then
+		pova.add_override(player:get_player_name(), "default", {gravity = grav})
+	else
+		player:set_physics_override({gravity = grav})
+	end
+end
+
+
+local pova = minetest.get_modpath("pova")
 local timer = 0
 
 minetest.register_globalstep(function(dtime)
@@ -63,6 +75,10 @@ minetest.register_globalstep(function(dtime)
 
 			player_list[name] = "underground"
 
+			if otherworlds.settings.gravity.enable then
+				set_gravity(player, 1.0)
+			end
+
 		-- Earth
 		elseif pos.y > underground and pos.y < space_low
 		and current ~= "earth" then
@@ -80,7 +96,7 @@ minetest.register_globalstep(function(dtime)
 			player_list[name] = "earth"
 
 			if otherworlds.settings.gravity.enable then
-				player:set_physics_override({gravity = 1})
+				set_gravity(player, 1.0)
 			end
 
 		-- Outerspace
@@ -101,7 +117,7 @@ minetest.register_globalstep(function(dtime)
 			player_list[name] = "space"
 
 			if otherworlds.settings.gravity.enable then
-				player:set_physics_override({gravity = 0.4})
+				set_gravity(player, 0.4)
 			end
 
 		-- Redsky
@@ -122,7 +138,7 @@ minetest.register_globalstep(function(dtime)
 			player_list[name] = "redsky"
 
 			if otherworlds.settings.gravity.enable then
-				player:set_physics_override({gravity = 0.2})
+				set_gravity(player, 0.2)
 			end
 
 		-- Everything else (blackness)
@@ -141,7 +157,7 @@ minetest.register_globalstep(function(dtime)
 			player_list[name] = "blackness"
 
 			if otherworlds.settings.gravity.enable then
-				player:set_physics_override({gravity = 0.1})
+				set_gravity(player, 0.1)
 			end
 		end
 	end
@@ -154,6 +170,6 @@ minetest.register_on_leaveplayer(function(player)
 	player_list[name] = nil
 
 	if otherworlds.settings.gravity.enable then
-		player:set_physics_override({gravity = 1})
+		set_gravity(player, 1.0)
 	end
 end)

@@ -1,11 +1,12 @@
 --Heights for skyboxes
-local space_low = 5000 
+local underground = -50
+local space_low = 5000
 local space_high = 5999
 local redsky_low = 6000
 local redsky_high = 6999
 
-
-local player_list = {} -- Holds name of skybox showing for each player
+-- Holds name of skybox showing for each player
+local player_list = {}
 
 --Outerspace skybox
 local spaceskybox = {
@@ -46,38 +47,99 @@ minetest.register_globalstep(function(dtime)
 		local pos = player:getpos()
 		local current = player_list[name] or ""
 
+		-- Underground
+		if pos.y < underground and current ~= "underground" then
+
+			player:set_sky({
+				type = "plain",
+				clouds = false,
+				sunrise_visible = false,
+				base_color = 000000,
+			})
+
+			player:set_moon({visible = false})
+			player:set_stars({visible = false})
+			player:set_sun({visible = false, sunrise_visible = false})
+
+			player_list[name] = "underground"
+
 		-- Earth
-		if pos.y < space_low and current ~= "earth" then
-			player:set_sky({}, "regular", {})
-			player:set_clouds({density = 0.4})
+		elseif pos.y > underground and pos.y < space_low
+		and current ~= "earth" then
+
+			player:set_sky({
+				type = "regular",
+				clouds = true,
+				sunrise_visible = true,
+			})
+
+			player:set_moon({visible = true})
+			player:set_stars({visible = true})
+			player:set_sun({visible = true, scale = 1.0, sunrise_visible = true})
+
 			player_list[name] = "earth"
+
 			if otherworlds.settings.gravity.enable then
 				player:set_physics_override({gravity = 1})
 			end
 
 		-- Outerspace
-		elseif pos.y > space_low and pos.y < space_high and current ~= "space" then
-			player:set_sky({}, "skybox", spaceskybox)
-			player:set_clouds({density = 0})
+		elseif pos.y > space_low and pos.y < space_high
+		and current ~= "space" then
+
+			player:set_sky({
+				type = "skybox",
+				textures = spaceskybox,
+				clouds = false,
+				sunrise_visible = false,
+			})
+
+			player:set_moon({visible = false})
+			player:set_stars({visible = false})
+			player:set_sun({visible = true, scale = 1.0, sunrise_visible = false})
+
 			player_list[name] = "space"
+
 			if otherworlds.settings.gravity.enable then
 				player:set_physics_override({gravity = 0.4})
 			end
 
 		-- Redsky
-		elseif pos.y > redsky_low and pos.y < redsky_high and current ~= "redsky" then
-			player:set_sky({}, "skybox", redskybox)
-			player:set_clouds({density = 0})
+		elseif pos.y > redsky_low and pos.y < redsky_high
+		and current ~= "redsky" then
+
+			player:set_sky({
+				type = "skybox",
+				textures = redskybox,
+				clouds = false,
+				sunrise_visible = false,
+			})
+
+			player:set_moon({visible = false})
+			player:set_stars({visible = false})
+			player:set_sun({visible = true, scale = 0.5, sunrise_visible = false})
+
 			player_list[name] = "redsky"
+
 			if otherworlds.settings.gravity.enable then
 				player:set_physics_override({gravity = 0.2})
 			end
 
 		-- Everything else (blackness)
 		elseif pos.y > redsky_high and current ~= "blackness" then
-			player:set_sky(000000, "plain", {})
-			player:set_clouds({density = 0})
+
+			player:set_sky({
+				type = "plain",
+				clouds = false,
+				sunrise_visible = false,
+				base_color = 000000,
+			})
+			player:set_moon({visible = false})
+			player:set_stars({visible = true})
+			player:set_sun({visible = true, scale = 0.1})
+
 			player_list[name] = "blackness"
+
 			if otherworlds.settings.gravity.enable then
 				player:set_physics_override({gravity = 0.1})
 			end
@@ -86,8 +148,11 @@ minetest.register_globalstep(function(dtime)
 end)
 
 minetest.register_on_leaveplayer(function(player)
+
 	local name = player:get_player_name()
+
 	player_list[name] = nil
+
 	if otherworlds.settings.gravity.enable then
 		player:set_physics_override({gravity = 1})
 	end

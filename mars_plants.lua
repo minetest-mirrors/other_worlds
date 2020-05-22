@@ -10,12 +10,12 @@ minetest.register_node(":mars:redgrass", {
 	sunlight_propagates = true,
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy=3,flora=1,attached_node=1},
+	groups = {snappy = 3, flora = 1, attached_node = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
+	}
 })
 
 minetest.register_node(":mars:redweed", {
@@ -30,12 +30,12 @@ minetest.register_node(":mars:redweed", {
 	sunlight_propagates = true,
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy=3,flora=1,attached_node=1},
+	groups = {snappy = 3, flora = 1, attached_node = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
+	}
 })
 
 minetest.register_node(":mars:moss", {
@@ -49,17 +49,16 @@ minetest.register_node(":mars:moss", {
 	sunlight_propagates = true,
 	walkable = false,
 	node_box = {
-		type = "fixed", 
+		type = "fixed",
 		fixed = {-1/2, -1/2, -1/2, 1/2, -15/32, 1/2},
 	},
 	selection_box = {
-		type = "fixed", 
+		type = "fixed",
 		fixed = {-1/2, -1/2, -1/2, 1/2, -15/32, 1/2},
 	},
-	groups = {snappy=3,flora=1,attached_node=1},
-	sounds = default.node_sound_leaves_defaults(),
+	groups = {snappy = 3, flora = 1, attached_node = 1},
+	sounds = default.node_sound_leaves_defaults()
 })
-
 
 --mars grass
 minetest.register_node(":mars:grass_1", {
@@ -73,7 +72,7 @@ minetest.register_node(":mars:grass_1", {
 	sunlight_propagates = true,
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy=3,flora=1,attached_node=1},
+	groups = {snappy = 3, flora = 1, attached_node = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -81,31 +80,38 @@ minetest.register_node(":mars:grass_1", {
 	},
 
 	on_place = function(itemstack, placer, pointed_thing)
+
 		-- place a random grass node
-		local stack = ItemStack("mars:grass_"..math.random(1,5))
+		local stack = ItemStack("mars:grass_" .. math.random(5))
 		local ret = minetest.item_place(stack, placer, pointed_thing)
-		return ItemStack("mars:grass_1 "..itemstack:get_count()-(1-ret:get_count()))
-	end,
+
+		return ItemStack("mars:grass_1 "
+			.. itemstack:get_count() - (1 - ret:get_count()))
+	end
 })
 
-for i=2,5 do
-	minetest.register_node(":mars:grass_"..i, {
+for i = 2, 5 do
+
+	minetest.register_node(":mars:grass_" .. i, {
 		description = "Martian Grass",
 		drawtype = "plantlike",
 		waving = 1,
-		tiles = {"mars_grass_"..i..".png"},
-		inventory_image = "mars_grass_"..i..".png",
-		wield_image = "mars_grass_"..i..".png",
+		tiles = {"mars_grass_" .. i .. ".png"},
+		inventory_image = "mars_grass_" .. i .. ".png",
+		wield_image = "mars_grass_" .. i .. ".png",
 		paramtype = "light",
 		sunlight_propagates = true,
 		walkable = false,
 		buildable_to = true,
 		drop = "mars:grass_1",
-		groups = {snappy=3,flora=1,attached_node=1,not_in_creative_inventory=1},
+		groups = {
+			snappy = 3, flora = 1, attached_node = 1,
+			not_in_creative_inventory = 1
+		},
 		sounds = default.node_sound_leaves_defaults(),
 		selection_box = {
 			type = "fixed",
 			fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-		},
+		}
 	})
 end

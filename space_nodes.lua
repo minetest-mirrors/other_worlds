@@ -5,8 +5,8 @@ minetest.register_node(":asteroid:stone", {
 	tiles = {"default_stone.png"},
 	is_ground_content = false,
 	drop = 'asteroid:cobble',
-	groups = {cracky = 3, not_in_creative_inventory=1},
-	sounds = default.node_sound_stone_defaults(),
+	groups = {cracky = 3, not_in_creative_inventory = 1},
+	sounds = default.node_sound_stone_defaults()
 })
 
 minetest.register_node(":asteroid:redstone", {
@@ -15,7 +15,7 @@ minetest.register_node(":asteroid:redstone", {
 	is_ground_content = false,
 	drop = 'asteroid:redcobble',
 	groups = {cracky = 3},
-	sounds = default.node_sound_stone_defaults(),
+	sounds = default.node_sound_stone_defaults()
 })
 
 minetest.register_node(":asteroid:cobble", {
@@ -23,7 +23,7 @@ minetest.register_node(":asteroid:cobble", {
 	tiles = {"asteroid_cobble.png"},
 	is_ground_content = false,
 	groups = {cracky = 3},
-	sounds = default.node_sound_stone_defaults(),
+	sounds = default.node_sound_stone_defaults()
 })
 
 minetest.register_node(":asteroid:redcobble", {
@@ -31,7 +31,7 @@ minetest.register_node(":asteroid:redcobble", {
 	tiles = {"asteroid_redcobble.png"},
 	is_ground_content = false,
 	groups = {cracky = 3},
-	sounds = default.node_sound_stone_defaults(),
+	sounds = default.node_sound_stone_defaults()
 })
 
 minetest.register_node(":asteroid:gravel", {
@@ -41,7 +41,7 @@ minetest.register_node(":asteroid:gravel", {
 	groups = {crumbly = 2},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name = "default_gravel_footstep", gain = 0.2},
-	}),
+	})
 })
 
 minetest.register_node(":asteroid:redgravel", {
@@ -51,7 +51,7 @@ minetest.register_node(":asteroid:redgravel", {
 	groups = {crumbly = 2},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name = "default_gravel_footstep", gain = 0.2},
-	}),
+	})
 })
 
 minetest.register_node(":asteroid:dust", {
@@ -61,7 +61,7 @@ minetest.register_node(":asteroid:dust", {
 	groups = {crumbly = 3},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name = "default_gravel_footstep", gain = 0.1},
-	}),
+	})
 })
 
 minetest.register_node(":asteroid:reddust", {
@@ -71,7 +71,7 @@ minetest.register_node(":asteroid:reddust", {
 	groups = {crumbly = 3},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name = "default_gravel_footstep", gain = 0.1},
-	}),
+	})
 })
 
 minetest.register_node(":asteroid:ironore", {
@@ -80,7 +80,7 @@ minetest.register_node(":asteroid:ironore", {
 	is_ground_content = false,
 	groups = {cracky = 2},
 	drop = "default:iron_lump",
-	sounds = default.node_sound_stone_defaults(),
+	sounds = default.node_sound_stone_defaults()
 })
 
 minetest.register_node(":asteroid:copperore", {
@@ -89,7 +89,7 @@ minetest.register_node(":asteroid:copperore", {
 	is_ground_content = false,
 	groups = {cracky = 2},
 	drop = "default:copper_lump",
-	sounds = default.node_sound_stone_defaults(),
+	sounds = default.node_sound_stone_defaults()
 })
 
 minetest.register_node(":asteroid:goldore", {
@@ -98,7 +98,7 @@ minetest.register_node(":asteroid:goldore", {
 	is_ground_content = false,
 	groups = {cracky = 2},
 	drop = "default:gold_lump",
-	sounds = default.node_sound_stone_defaults(),
+	sounds = default.node_sound_stone_defaults()
 })
 
 minetest.register_node(":asteroid:diamondore", {
@@ -107,7 +107,7 @@ minetest.register_node(":asteroid:diamondore", {
 	is_ground_content = false,
 	groups = {cracky = 1},
 	drop = "default:diamond",
-	sounds = default.node_sound_stone_defaults(),
+	sounds = default.node_sound_stone_defaults()
 })
 
 minetest.register_node(":asteroid:meseore", {
@@ -116,7 +116,7 @@ minetest.register_node(":asteroid:meseore", {
 	is_ground_content = false,
 	groups = {cracky = 1},
 	drop = "default:mese_crystal",
-	sounds = default.node_sound_stone_defaults(),
+	sounds = default.node_sound_stone_defaults()
 })
 
 minetest.register_node(":asteroid:atmos", {
@@ -132,5 +132,5 @@ minetest.register_node(":asteroid:atmos", {
 	is_ground_content = false,
 	use_texture_alpha = true,
 	post_effect_color = {a = 31, r = 241, g = 248, b = 255},
-	groups = {not_in_creative_inventory = 1},
+	groups = {not_in_creative_inventory = 1}
 })

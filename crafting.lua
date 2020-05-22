@@ -41,5 +41,4 @@ if otherworlds.settings.crafting.enable then
 			{"asteroid:redgravel"},
 		},
 	})
-
 end

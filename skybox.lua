@@ -1,4 +1,4 @@
---Heights for skyboxes
+-- Heights for skyboxes
 local underground = -50
 local space_low = 5000
 local space_high = 5999
@@ -8,7 +8,7 @@ local redsky_high = 6999
 -- Holds name of skybox showing for each player
 local player_list = {}
 
---Outerspace skybox
+-- Outerspace skybox
 local spaceskybox = {
 	"sky_pos_z.png",
 	"sky_neg_z.png^[transformR180",
@@ -18,7 +18,7 @@ local spaceskybox = {
 	"sky_neg_x.png^[transformR90",
 }
 
---Redsky skybox
+-- Redsky skybox
 local redskybox = {
 	"sky_pos_z.png^[colorize:#99000050",
 	"sky_neg_z.png^[transformR180^[colorize:#99000050",
@@ -28,6 +28,19 @@ local redskybox = {
 	"sky_neg_x.png^[transformR90^[colorize:#99000050",
 }
 
+-- Darkest space skybox
+local darkskybox = {
+	"sky_pos_z.png^[colorize:#00005070",
+	"sky_neg_z.png^[transformR180^[colorize:#00005070",
+	"sky_neg_y.png^[transformR270^[colorize:#00005070",
+	"sky_pos_y.png^[transformR270^[colorize:#00005070",
+	"sky_pos_x.png^[transformR270^[colorize:#00005070",
+	"sky_neg_x.png^[transformR90^[colorize:#00005070",
+}
+
+
+-- check for active pova mod
+local pova = minetest.get_modpath("pova")
 
 -- gravity helper function
 local set_gravity = function(player, grav)
@@ -40,7 +53,6 @@ local set_gravity = function(player, grav)
 end
 
 
-local pova = minetest.get_modpath("pova")
 local timer = 0
 
 minetest.register_globalstep(function(dtime)
@@ -145,11 +157,12 @@ minetest.register_globalstep(function(dtime)
 		elseif pos.y > redsky_high and current ~= "blackness" then
 
 			player:set_sky({
-				type = "plain",
+				type = "skybox",
+				textures = darkskybox,
 				clouds = false,
 				sunrise_visible = false,
-				base_color = 000000,
 			})
+
 			player:set_moon({visible = false})
 			player:set_stars({visible = true})
 			player:set_sun({visible = true, scale = 0.1})
@@ -164,12 +177,5 @@ minetest.register_globalstep(function(dtime)
 end)
 
 minetest.register_on_leaveplayer(function(player)
-
-	local name = player:get_player_name()
-
-	player_list[name] = nil
-
-	if otherworlds.settings.gravity.enable then
-		set_gravity(player, 1.0)
-	end
+	player_list[player:get_player_name()] = nil
 end)

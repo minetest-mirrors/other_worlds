@@ -5,7 +5,7 @@ minetest.register_node(":asteroid:stone", {
 	tiles = {"default_stone.png"},
 	is_ground_content = false,
 	drop = 'asteroid:cobble',
-	groups = {cracky = 3, not_in_creative_inventory = 1},
+	groups = {cracky = 3, stone = 1, not_in_creative_inventory = 1},
 	sounds = default.node_sound_stone_defaults()
 })
 
@@ -14,7 +14,7 @@ minetest.register_node(":asteroid:redstone", {
 	tiles = {"asteroid_redstone.png"},
 	is_ground_content = false,
 	drop = 'asteroid:redcobble',
-	groups = {cracky = 3},
+	groups = {cracky = 3, stone = 1},
 	sounds = default.node_sound_stone_defaults()
 })
 
@@ -22,7 +22,7 @@ minetest.register_node(":asteroid:cobble", {
 	description = "Asteroid Cobble",
 	tiles = {"asteroid_cobble.png"},
 	is_ground_content = false,
-	groups = {cracky = 3},
+	groups = {cracky = 3, stone = 2},
 	sounds = default.node_sound_stone_defaults()
 })
 
@@ -30,7 +30,7 @@ minetest.register_node(":asteroid:redcobble", {
 	description = "Asteroid Cobble",
 	tiles = {"asteroid_redcobble.png"},
 	is_ground_content = false,
-	groups = {cracky = 3},
+	groups = {cracky = 3, stone = 2},
 	sounds = default.node_sound_stone_defaults()
 })
 

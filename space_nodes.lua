@@ -130,7 +130,7 @@ minetest.register_node(":asteroid:atmos", {
 	diggable = false,
 	buildable_to = true,
 	is_ground_content = false,
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",--true,
 	post_effect_color = {a = 31, r = 241, g = 248, b = 255},
 	groups = {not_in_creative_inventory = 1}
 })

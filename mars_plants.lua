@@ -14,7 +14,7 @@ minetest.register_node(":mars:redgrass", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
+		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}
 	}
 })
 
@@ -34,7 +34,7 @@ minetest.register_node(":mars:redweed", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
+		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}
 	}
 })
 
@@ -46,6 +46,7 @@ minetest.register_node(":mars:moss", {
 	wield_image = "mars_moss.png",
 	paramtype = "light",
 	paramtype2 = "facedir",
+	use_texture_alpha = "clip",
 	sunlight_propagates = true,
 	walkable = false,
 	node_box = {
@@ -76,7 +77,7 @@ minetest.register_node(":mars:grass_1", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
+		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}
 	},
 
 	on_place = function(itemstack, placer, pointed_thing)
@@ -111,7 +112,7 @@ for i = 2, 5 do
 		sounds = default.node_sound_leaves_defaults(),
 		selection_box = {
 			type = "fixed",
-			fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
+			fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}
 		}
 	})
 end

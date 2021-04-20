@@ -15,7 +15,7 @@ local spaceskybox = {
 	"sky_neg_y.png^[transformR270",
 	"sky_pos_y.png^[transformR270",
 	"sky_pos_x.png^[transformR270",
-	"sky_neg_x.png^[transformR90",
+	"sky_neg_x.png^[transformR90"
 }
 
 -- Redsky skybox
@@ -25,7 +25,7 @@ local redskybox = {
 	"sky_neg_y.png^[transformR270^[colorize:#99000050",
 	"sky_pos_y.png^[transformR270^[colorize:#99000050",
 	"sky_pos_x.png^[transformR270^[colorize:#99000050",
-	"sky_neg_x.png^[transformR90^[colorize:#99000050",
+	"sky_neg_x.png^[transformR90^[colorize:#99000050"
 }
 
 -- Darkest space skybox
@@ -35,7 +35,7 @@ local darkskybox = {
 	"sky_neg_y.png^[transformR270^[colorize:#00005070",
 	"sky_pos_y.png^[transformR270^[colorize:#00005070",
 	"sky_pos_x.png^[transformR270^[colorize:#00005070",
-	"sky_neg_x.png^[transformR90^[colorize:#00005070",
+	"sky_neg_x.png^[transformR90^[colorize:#00005070"
 }
 
 
@@ -78,7 +78,7 @@ minetest.register_globalstep(function(dtime)
 				type = "plain",
 				clouds = false,
 				sunrise_visible = false,
-				base_color = 000000,
+				base_color = 000000
 			})
 
 			player:set_moon({visible = false})
@@ -98,7 +98,7 @@ minetest.register_globalstep(function(dtime)
 			player:set_sky({
 				type = "regular",
 				clouds = true,
-				sunrise_visible = true,
+				sunrise_visible = true
 			})
 
 			player:set_moon({visible = true})
@@ -119,7 +119,7 @@ minetest.register_globalstep(function(dtime)
 				type = "skybox",
 				textures = spaceskybox,
 				clouds = false,
-				sunrise_visible = false,
+				sunrise_visible = false
 			})
 
 			player:set_moon({visible = false})
@@ -140,7 +140,7 @@ minetest.register_globalstep(function(dtime)
 				type = "skybox",
 				textures = redskybox,
 				clouds = false,
-				sunrise_visible = false,
+				sunrise_visible = false
 			})
 
 			player:set_moon({visible = false})
@@ -160,7 +160,7 @@ minetest.register_globalstep(function(dtime)
 				type = "skybox",
 				textures = darkskybox,
 				clouds = false,
-				sunrise_visible = false,
+				sunrise_visible = false
 			})
 
 			player:set_moon({visible = false})

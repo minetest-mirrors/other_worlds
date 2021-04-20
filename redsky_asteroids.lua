@@ -41,7 +41,7 @@ local flower = {
 local crystal = {
 	"crystals:ghost_crystal_1", "crystals:ghost_crystal_2",
 	"crystals:red_crystal_1", "crystals:red_crystal_2",
-	"crystals:rose_quartz_1", "crystals:rose_quartz_2",
+	"crystals:rose_quartz_1", "crystals:rose_quartz_2"
 }
 
 local random = math.random

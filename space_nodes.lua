@@ -40,7 +40,7 @@ minetest.register_node(":asteroid:gravel", {
 	is_ground_content = false,
 	groups = {crumbly = 2},
 	sounds = default.node_sound_dirt_defaults({
-		footstep = {name = "default_gravel_footstep", gain = 0.2},
+		footstep = {name = "default_gravel_footstep", gain = 0.2}
 	})
 })
 
@@ -50,7 +50,7 @@ minetest.register_node(":asteroid:redgravel", {
 	is_ground_content = false,
 	groups = {crumbly = 2},
 	sounds = default.node_sound_dirt_defaults({
-		footstep = {name = "default_gravel_footstep", gain = 0.2},
+		footstep = {name = "default_gravel_footstep", gain = 0.2}
 	})
 })
 
@@ -60,7 +60,7 @@ minetest.register_node(":asteroid:dust", {
 	is_ground_content = false,
 	groups = {crumbly = 3},
 	sounds = default.node_sound_dirt_defaults({
-		footstep = {name = "default_gravel_footstep", gain = 0.1},
+		footstep = {name = "default_gravel_footstep", gain = 0.1}
 	})
 })
 
@@ -70,7 +70,7 @@ minetest.register_node(":asteroid:reddust", {
 	is_ground_content = false,
 	groups = {crumbly = 3},
 	sounds = default.node_sound_dirt_defaults({
-		footstep = {name = "default_gravel_footstep", gain = 0.1},
+		footstep = {name = "default_gravel_footstep", gain = 0.1}
 	})
 })
 

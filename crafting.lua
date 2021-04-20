@@ -16,6 +16,12 @@ if otherworlds.settings.crafting.enable then
 	})
 
 	minetest.register_craft({
+		type = "cooking",
+		output = "asteroid:stone",
+		recipe = "asteroid:cobble"
+	})
+
+	minetest.register_craft({
 		output = "asteroid:redcobble",
 		recipe = {{"asteroid:redstone"}}
 	})
@@ -28,5 +34,11 @@ if otherworlds.settings.crafting.enable then
 	minetest.register_craft({
 		output = "asteroid:reddust",
 		recipe = {{"asteroid:redgravel"}}
+	})
+
+	minetest.register_craft({
+		type = "cooking",
+		output = "asteroid:redstone",
+		recipe = "asteroid:redcobble"
 	})
 end

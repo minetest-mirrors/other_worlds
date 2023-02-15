@@ -53,6 +53,11 @@ local set_gravity = function(player, grav)
 end
 
 
+-------- this just adds nether background for xanadu server
+local nether_mod = minetest.get_modpath("nether") and minetest.get_modpath("xanadu")
+--------
+
+
 local timer = 0
 
 minetest.register_globalstep(function(dtime)
@@ -71,14 +76,45 @@ minetest.register_globalstep(function(dtime)
 		local pos = player:get_pos()
 		local current = player_list[name] or ""
 
+-------- this just adds nether background for xanadu server
+if nether_mod and pos.y < -28000 and current ~= "nether" then
+
+	player:set_sky({
+		type = "plain",
+		base_color = "#1d1118", --"#300530", --"#070916", --"#1D0504",
+		clouds = false,
+		sky_color = {
+			day_horizon = "#9bc1f0",
+			dawn_horizon = "#bac1f0",
+			fog_tint_type = "default",
+			dawn_sky = "#b4bafa",
+			day_sky = "#8cbafa",
+			night_sky = "#006aff",
+			indoors = "#646464",
+			night_horizon = "#4090ff"
+		}
+	})
+
+	player:set_moon({visible = false})
+	player:set_stars({visible = false})
+	player:set_sun({visible = false, sunrise_visible = false})
+
+	player_list[name] = "nether"
+
+	if otherworlds.settings.gravity.enable then
+		set_gravity(player, 1.05)
+	end
+--------
+
 		-- Underground
-		if pos.y < underground and current ~= "underground" then
+		elseif pos.y > -28000 and pos.y < underground and current ~= "underground" then
+--		if pos.y < underground and current ~= "underground" then
 
 			player:set_sky({
 				type = "plain",
 				clouds = false,
 				sunrise_visible = false,
-				base_color = 000000
+				base_color = "#101010"
 			})
 
 			player:set_moon({visible = false})

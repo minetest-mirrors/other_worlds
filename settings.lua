@@ -1,26 +1,36 @@
 otherworlds.settings = {}
 
+
 -- general
 otherworlds.settings.crafting = {
-	enable = true, --set to false to remove crafting recipes
+	-- set to false to remove crafting recipes
+	enable = minetest.settings:get_bool("otherworlds.crafting", true)
 }
 
 -- space_asteroids
 otherworlds.settings.space_asteroids = {
-	enable = true, -- set to false to prevent space mapgen
-	YMIN = 5000, -- adjust to change minimum height of space layer
-	YMAX = 6000, -- adjust to change maximum height for space layer
+	-- set to false to prevent space mapgen
+	enable = minetest.settings:get_bool("otherworlds.space", true),
+	-- minimum height of space layer
+	YMIN = tonumber(minetest.settings:get("otherworlds.space.ymin") or 5000),
+	-- maximum height for space layer
+	YMAX = tonumber(minetest.settings:get("otherworlds.space.ymax") or 6000),
 }
 
 
 -- redsky_asteroids
 otherworlds.settings.redsky_asteroids = {
-	enable = true, -- set to false to prevent redsky mapgen
-	YMIN = 6000, -- adjust to change minimum height of redsky layer
-	YMAX = 7000, -- adjust to change maximum height for redsky layer
+	-- set to false to prevent redsky mapgen
+	enable = minetest.settings:get_bool("otherworlds.redsky", true),
+	-- minimum height of redsky layer
+	YMIN = tonumber(minetest.settings:get("otherworlds.redsky.ymin") or 6000),
+	-- maximum height for redsky layer
+	YMAX = tonumber(minetest.settings:get("otherworlds.redsky.ymax") or 7000),
 }
+
 
 -- gravity
 otherworlds.settings.gravity = {
-	enable = false, -- set to true to enable gravity
+	-- set to true to enable gravity
+	enable = minetest.settings:get_bool("otherworlds.gravity", false),
 }

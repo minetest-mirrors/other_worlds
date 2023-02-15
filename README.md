@@ -15,7 +15,7 @@ Default layers are Space and Red Sky, but anyone familiar with editing mods shou
 Settings
 --------
 
-Settings for this mod can be adjusted by editing the settings.lua file.
+Settings for this mod can be adjusted in Minetests Settings tab -> All Settings
 
 See the comments in this file for how to adjust:
 

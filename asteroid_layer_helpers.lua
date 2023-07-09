@@ -91,7 +91,8 @@ local np_satmos = {
 -- On dignode function. Atmosphere flows into a dug hole.
 minetest.register_on_dignode(function(pos, oldnode, digger)
 
-	if minetest.find_node_near(pos, 1, {"asteroid:atmos"}) then
+	if minetest.find_node_near(pos, 1, {"asteroid:atmos"})
+	and minetest.get_node(pos).name == "air" then
 		minetest.set_node(pos, {name = "asteroid:atmos"})
 	end
 end)

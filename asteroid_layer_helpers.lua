@@ -150,17 +150,17 @@ function otherworlds.asteroids.create_on_generated(ymin, ymax, content_ids)
 		local data = vm:get_data()
 
 		local nvals1 = minetest.get_perlin_map(np_large,
-				chulens):get3dMap_flat(minpos)
+				chulens):get_3d_map_flat(minpos)
 		local nvals3 = minetest.get_perlin_map(np_fissure,
-				chulens):get3dMap_flat(minpos)
+				chulens):get_3d_map_flat(minpos)
 		local nvals4 = minetest.get_perlin_map(np_small,
-				chulens):get3dMap_flat(minpos)
+				chulens):get_3d_map_flat(minpos)
 		local nvals5 = minetest.get_perlin_map(np_ores,
-				chulens):get3dMap_flat(minpos)
+				chulens):get_3d_map_flat(minpos)
 		local nvals6 = minetest.get_perlin_map(np_latmos,
-				chulens):get3dMap_flat(minpos)
+				chulens):get_3d_map_flat(minpos)
 		local nvals7 = minetest.get_perlin_map(np_satmos,
-				chulens):get3dMap_flat(minpos)
+				chulens):get_3d_map_flat(minpos)
 
 		local ni = 1
 

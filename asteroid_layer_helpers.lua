@@ -26,6 +26,11 @@ local random = math.random
 local floor = math.floor
 local abs = math.abs
 
+-- check setting for anything other than 0 and amend if needed
+if otherworlds.settings.ore_chance.value ~= 0 then
+	ORECHA = ORECHA * otherworlds.settings.ore_chance.value
+end
+
 -- Note: for fewer large objects: increase the 'spread' numbers in 'np_large' noise parameters. For fewer small objects do the same in 'np_small'. Then tune size with 'ASCOT'
 
 -- 3D Perlin noise 1 for large structures

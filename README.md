@@ -23,7 +23,7 @@ See the comments in this file for how to adjust:
 2. Whether map-generation is currently active for individual layers.
 3. Whether player gravity changes for each layer (off by default).
 4. Whether crafting recipes are enabled.
-5. Multiply ore chance within asteroids (default is 0.0), 0.5 doubles chance, 2 halves.
+5. Set the chance of finding ores in asteroids (default is 27 [0 to 100]).
 
 Note: It is advised to turn off map-generation after you have generated the required number of asteroids.
 

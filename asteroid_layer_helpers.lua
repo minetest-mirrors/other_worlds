@@ -17,7 +17,7 @@ local ICET = 0.05 -- Comet ice threshold
 local ATMOT = -0.2 -- Comet atmosphere threshold
 local FISTS = 0.01 -- Fissure noise threshold at surface. Controls size of fissures and amount / size of fissure entrances
 local FISEXP = 0.3 -- Fissure expansion rate under surface
-local ORECHA = 3*3*3 -- Ore 1/x chance per stone node
+local ORECHA = otherworlds.settings.ore_chance.value -- Ore 1/x chance per stone node
 local CPCHU = 0 -- Maximum craters per chunk
 local CRMIN = 5 -- Crater radius minimum, radius includes dust and obsidian layers
 local CRRAN = 8 -- Crater radius range
@@ -26,10 +26,6 @@ local random = math.random
 local floor = math.floor
 local abs = math.abs
 
--- check setting for anything other than 0 and amend if needed
-if otherworlds.settings.ore_chance.value ~= 0 then
-	ORECHA = ORECHA * otherworlds.settings.ore_chance.value
-end
 
 -- Note: for fewer large objects: increase the 'spread' numbers in 'np_large' noise parameters. For fewer small objects do the same in 'np_small'. Then tune size with 'ASCOT'
 
@@ -199,7 +195,7 @@ function otherworlds.asteroids.create_on_generated(ymin, ymax, content_ids)
 						if noise1dep >= STOT or noise4dep >= STOT then
 
 							-- stone/ores
-							if random(ORECHA) == 2 then
+							if random(ORECHA) == 1 then
 
 								if nvals5[ni] > 0.6 then
 									data[vi] = c_goldore

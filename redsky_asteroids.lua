@@ -43,7 +43,7 @@ local random = math.random
 
 -- Add surface decoration
 
-local function generate(vm, minp, maxp)
+minetest.register_on_generated(function(minp, maxp)
 
 	if minp.y < YMIN or maxp.y > YMAX then return end
 
@@ -69,14 +69,4 @@ local function generate(vm, minp, maxp)
 			minetest.swap_node(bpos, {name = crystal[random(#crystal)]})
 		end
 	end
-end
-
-if minetest.save_gen_notify ~= nil then -- async env (5.9+)
-	minetest.register_on_generated(function(vm, minp, maxp, blockseed)
-		generate(vm, minp, maxp)
-	end)
-else -- main thread (5.8 and earlier)
-	minetest.register_on_generated(function(minp, maxp, blockseed)
-		generate(minetest.get_mapgen_object("voxelmanip"), minp, maxp)
-	end)
-end
+end)

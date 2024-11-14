@@ -145,7 +145,8 @@ minetest.register_globalstep(function(dtime)
 		elseif pos.y >= space_low and pos.y <= space_high
 		and current ~= "space" then
 
-			player:set_sky({type = "skybox", textures = spaceskybox, clouds = false})
+			player:set_sky({type = "skybox", textures = spaceskybox, clouds = false,
+					base_color = "#000000"})
 			player:set_moon({visible = false})
 			player:set_stars({visible = false})
 			player:set_sun({visible = true, scale = 1.0, sunrise_visible = false})
@@ -161,7 +162,8 @@ minetest.register_globalstep(function(dtime)
 		elseif pos.y >= redsky_low and pos.y <= redsky_high
 		and current ~= "redsky" then
 
-			player:set_sky({type = "skybox", textures = redskybox, clouds = false})
+			player:set_sky({type = "skybox", textures = redskybox, clouds = false,
+					base_color = "#000000"})
 			player:set_moon({visible = false})
 			player:set_stars({visible = false})
 			player:set_sun({visible = true, scale = 0.5, sunrise_visible = false})
@@ -176,10 +178,11 @@ minetest.register_globalstep(function(dtime)
 
 		elseif pos.y > redsky_high and current ~= "blackness" then
 
-			player:set_sky({type = "skybox", textures = darkskybox, clouds = false})
+			player:set_sky({type = "skybox", textures = darkskybox, clouds = false,
+					base_color = "#000000"})
 			player:set_moon({visible = false})
 			player:set_stars({visible = true})
-			player:set_sun({visible = true, scale = 0.1})
+			player:set_sun({visible = true, scale = 0.1, sunrise_visible = false})
 
 			player_list[name] = "blackness"
 

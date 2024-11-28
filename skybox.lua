@@ -49,13 +49,13 @@ local darkskybox = {
 
 -- check for active pova mod
 
-local pova = minetest.get_modpath("pova")
+local mod_pova = minetest.get_modpath("pova")
 
 -- gravity helper function
 
 local function set_gravity(player, grav)
 
-	if pova then
+	if mod_pova then
 		pova.add_override(player:get_player_name(), "default", {gravity = grav})
 	else
 		player:set_physics_override({gravity = grav})

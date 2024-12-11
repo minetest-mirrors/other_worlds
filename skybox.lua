@@ -116,7 +116,6 @@ minetest.register_globalstep(function(dtime)
 
 			if base_col then
 				player:set_sky({type = "plain", base_color = base_col, clouds = false})
-				first_time = nil
 			end
 
 			player:set_moon({visible = false})

@@ -77,7 +77,6 @@ end
 -- globalstep function runs every 2 seconds to show appropriate skybox
 
 local timer, timer2 = 0, 0
-local first_time = true
 
 minetest.register_globalstep(function(dtime)
 
@@ -99,7 +98,7 @@ minetest.register_globalstep(function(dtime)
 
 			timer2 = 0 -- reset nether layer timer (every 10 seconds)
 
-			local base_col = first_time and "#1D0504"
+			local base_col = current == "" and "#1D0504"
 			local ps, cn = minetest.find_nodes_in_area(
 					{x = pos.x - 6, y = pos.y - 4, z = pos.z - 6},
 					{x = pos.x + 6, y = pos.y + 4, z = pos.z + 6},

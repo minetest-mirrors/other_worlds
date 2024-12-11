@@ -1,16 +1,29 @@
 
--- Nether check for Xanadu server
-
-local nether_mod = minetest.get_modpath("nether") and minetest.get_modpath("xanadu")
-
 -- Heights for skyboxes
 
-local underground_low = nether_mod and -28000 or -31000
+local underground_low = -31000
 local underground_high = -50
 local space_low = 5000
 local space_high = 5999
 local redsky_low = 6000
 local redsky_high = 6999
+local nether_low = -32000
+local nether_high = -31000
+
+-- Nether check
+
+local mod_nether = minetest.get_modpath("nether")
+
+if mod_nether then
+
+	nether_low = nether.DEPTH_FLOOR or -32000
+	nether_high = nether.DEPTH_CEILING or -31000
+	underground_low = nether_high
+
+	if minetest.get_modpath("climate_api") then
+		mod_nether = nil -- remove nether skybox for climate_api version
+	end
+end
 
 -- Holds name of skybox showing for each player
 
@@ -46,7 +59,6 @@ local darkskybox = {
 	"sky_pos_x.png^[transformR270^[colorize:#00005070",
 	"sky_neg_x.png^[transformR90^[colorize:#00005070"}
 
-
 -- check for active pova mod
 
 local mod_pova = minetest.get_modpath("pova")
@@ -64,11 +76,13 @@ end
 
 -- globalstep function runs every 2 seconds to show appropriate skybox
 
-local timer = 0
+local timer, timer2 = 0, 0
+local first_time = true
 
 minetest.register_globalstep(function(dtime)
 
 	timer = timer + dtime ; if timer < 2 then return end ; timer = 0
+	timer2 = timer2 + 2
 
 	local name, pos, current
 
@@ -78,25 +92,33 @@ minetest.register_globalstep(function(dtime)
 		pos = player:get_pos()
 		current = player_list[name] or ""
 
-		-- this just adds nether background for xanadu server
+		-- this just adds nether background outwith climate_api mod
 
-		if nether_mod and pos.y < underground_low and current ~= "nether" then
+		if mod_nether and pos.y >= nether_low and pos.y <= nether_high
+		and (current ~= "nether" or (current == "nether" and timer2 > 8)) then
 
-			player:set_sky({
-				type = "plain",
-				base_color = "#1d1118",
-				clouds = false,
-				sky_color = {
-					day_horizon = "#9bc1f0",
-					dawn_horizon = "#bac1f0",
-					fog_tint_type = "default",
-					dawn_sky = "#b4bafa",
-					day_sky = "#8cbafa",
-					night_sky = "#006aff",
-					indoors = "#646464",
-					night_horizon = "#4090ff"
-				}
-			})
+			timer2 = 0 -- reset nether layer timer (every 10 seconds)
+
+			local base_col = first_time and "#1D0504"
+			local ps, cn = minetest.find_nodes_in_area(
+					{x = pos.x - 6, y = pos.y - 4, z = pos.z - 6},
+					{x = pos.x + 6, y = pos.y + 4, z = pos.z + 6},
+					{"nether:rack", "nether:rack_deep", "nether:geode", "nether:geodelite"})
+
+			-- easy find nether layer via quick node count
+
+			if (cn["nether:rack"] or 0) > 100 then
+				base_col = "#1D0504"
+			elseif (cn["nether:rack_deep"] or 0) > 100 then
+				base_col = "#070916"
+			elseif (cn["nether:geode"] or 0) + (cn["nether:geodelite"] or 0)> 100 then
+				base_col = "#300530"
+			end
+
+			if base_col then
+				player:set_sky({type = "plain", base_color = base_col, clouds = false})
+				first_time = nil
+			end
 
 			player:set_moon({visible = false})
 			player:set_stars({visible = false})

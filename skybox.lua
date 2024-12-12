@@ -94,14 +94,14 @@ minetest.register_globalstep(function(dtime)
 		-- this just adds nether background outwith climate_api mod
 
 		if mod_nether and pos.y >= nether_low and pos.y <= nether_high
-		and (current ~= "nether" or (current == "nether" and timer2 > 8)) then
+		and (current ~= "nether" or (current == "nether" and timer2 > 6)) then
 
 			timer2 = 0 -- reset nether layer timer (every 10 seconds)
 
-			local base_col = current == "" and "#1D0504"
+			local base_col = current ~= "nether" and "#1D0504"
 			local ps, cn = minetest.find_nodes_in_area(
-					{x = pos.x - 6, y = pos.y - 4, z = pos.z - 6},
-					{x = pos.x + 6, y = pos.y + 4, z = pos.z + 6},
+					{x = pos.x - 6, y = pos.y - 6, z = pos.z - 6},
+					{x = pos.x + 6, y = pos.y + 6, z = pos.z + 6},
 					{"nether:rack", "nether:rack_deep", "nether:geode", "nether:geodelite"})
 
 			-- easy find nether layer via quick node count

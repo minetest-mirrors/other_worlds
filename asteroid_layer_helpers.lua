@@ -301,9 +301,11 @@ function otherworlds.asteroids.create_on_generated(YMIN, YMAX, content_ids)
 		vm:calc_lighting()
 		vm:write_to_map(data)
 
--- local chugent = math.ceil((os.clock() - t1) * 1000)
---print ("[asteroid] time "..chugent.." ms")
-
-		data = nil
+		data = nil ; collectgarbage("collect") -- clear mem
+--[[
+		local chugent = math.ceil((os.clock() - t1) * 1000)
+		print ("[asteroid] time "..chugent.." ms / used mem:"
+				.. collectgarbage("count") / 1024 .. " MiB")
+]]--
 	end
 end

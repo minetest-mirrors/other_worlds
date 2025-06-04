@@ -69,6 +69,7 @@ local function set_gravity(player, grav)
 
 	if mod_pova then
 		pova.add_override(player:get_player_name(), "default", {gravity = grav})
+		pova.add_override(player:get_player_name(), "min", {gravity = 0.2})
 	else
 		player:set_physics_override({gravity = grav})
 	end
@@ -174,7 +175,7 @@ core.register_globalstep(function(dtime)
 			player_list[name] = "space"
 
 			if otherworlds.settings.gravity.enable then
-				set_gravity(player, 0.4)
+				set_gravity(player, 0.5)
 			end
 
 		-- Redsky
@@ -191,7 +192,7 @@ core.register_globalstep(function(dtime)
 			player_list[name] = "redsky"
 
 			if otherworlds.settings.gravity.enable then
-				set_gravity(player, 0.2)
+				set_gravity(player, 0.4)
 			end
 
 		-- Everything else above (the blackness)
@@ -207,7 +208,7 @@ core.register_globalstep(function(dtime)
 			player_list[name] = "blackness"
 
 			if otherworlds.settings.gravity.enable then
-				set_gravity(player, 0.1)
+				set_gravity(player, 0.3)
 			end
 		end
 	end
